@@ -2,7 +2,7 @@ package com.example.myfirstunittestpractice
 
 object RegistrationUtil {
 
-    private val existingUsers = listOf("behroz", "bahram", "parmida", "raika")
+    private val existingUsers = listOf("Behroz", "Bahram", "Parmida", "Raika")
 
     /**
      * the input is not valid if...
@@ -14,10 +14,22 @@ object RegistrationUtil {
 
 
     fun validateRegistrationInput(
-        userName: String,
+        username: String,
         password: String,
         confirmedPassword: String
     ): Boolean {
+        if (username.isEmpty() || password.isEmpty() || confirmedPassword.isEmpty()){
+            return false
+        }
+        if (username in existingUsers){
+            return false
+        }
+        if (password != confirmedPassword){
+            return false
+        }
+        if (password.count { it.isDigit() } < 2){
+            return false
+        }
         return true
     }
 
